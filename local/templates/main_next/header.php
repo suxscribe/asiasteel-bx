@@ -32,6 +32,7 @@
 
     <title><?$APPLICATION->ShowTitle()?></title>
     <?$APPLICATION->ShowHead()?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="yandex-verification" content="25d19f1db7ea3910" />
     <meta name="yandex-verification" content="<?=$_SESSION["VREGIONS_REGION"]["META_YANDEX"]?>" />
     <meta name="google-site-verification" content="pPDqr1GKZmtpAvqmso0Mc1FSKbT5rEulu9p5WIBLqgg" />

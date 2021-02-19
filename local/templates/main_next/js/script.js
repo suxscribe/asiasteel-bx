@@ -1448,10 +1448,13 @@ $(document).ready(function () {
 $(window).on('load', function () {
   if ($('.pageNavigation').length) {
     function setActiveToPageNavigationLink(elem) {
-      if ($('.jQ__pageNavigateActive').length) {
-        $('.jQ__pageNavigateActive').removeClass('jQ__pageNavigateActive');
+      if (window.innerWidth > 960) {
+        //zrx
+        if ($('.jQ__pageNavigateActive').length) {
+          $('.jQ__pageNavigateActive').removeClass('jQ__pageNavigateActive');
+        }
+        elem.addClass('jQ__pageNavigateActive');
       }
-      elem.addClass('jQ__pageNavigateActive');
     }
 
     function prescrollToAnchor(elem) {
@@ -1555,60 +1558,68 @@ $(window).on('load', function () {
     var correctionOffset = 76;
 
     function scrollDown(scrollOffset) {
-      var totalOffset = scrollOffset + headerHeight + correctionOffset;
+      if (window.innerWidth > 960) {
+        var totalOffset = scrollOffset + headerHeight + correctionOffset;
 
-      if (totalOffset > blockOffsetTop) {
-        blockToScroll.css({
-          position: 'fixed',
-          top: headerHeight + correctionOffset + 'px',
-        });
-      }
-      if (
-        blockToScroll.offset().top + blockToScrollHeight >
-        catalogMainOffsetTop + catalogMainHeight
-      ) {
-        blockToScroll.css({
-          position: 'absolute',
-          top:
-            $('.catalog__sidebar').outerHeight() -
-            blockToScrollHeight -
-            parseInt($('.catalog__content').css('padding-bottom')) +
-            'px',
-        });
-      }
+        if (totalOffset > blockOffsetTop) {
+          blockToScroll.css({
+            position: 'fixed',
+            top: headerHeight + correctionOffset + 'px',
+          });
+        }
+        if (
+          blockToScroll.offset().top + blockToScrollHeight >
+          catalogMainOffsetTop + catalogMainHeight
+        ) {
+          blockToScroll.css({
+            position: 'absolute',
+            top:
+              $('.catalog__sidebar').outerHeight() -
+              blockToScrollHeight -
+              parseInt($('.catalog__content').css('padding-bottom')) +
+              'px',
+          });
+        }
 
-      setActiveMenuElemToScrollDown(scrollOffset);
+        setActiveMenuElemToScrollDown(scrollOffset);
+      }
     }
 
     scrollDown($(window).scrollTop());
 
     function scrollUp(scrollOffset) {
-      var totalOffset = scrollOffset + headerHeight + correctionOffset;
+      if (window.innerWidth > 960) {
 
-      blockToScroll.css({
-        position: 'fixed',
-        top: headerHeight + correctionOffset + 'px',
-      });
+        var totalOffset = scrollOffset + headerHeight + correctionOffset;
 
-      if (totalOffset <= blockOffsetTop) {
-        blockToScroll.removeAttr('style');
+        blockToScroll.css({
+          position: 'fixed',
+          top: headerHeight + correctionOffset + 'px',
+        });
+
+        if (totalOffset <= blockOffsetTop) {
+          blockToScroll.removeAttr('style');
+        }
+
+        setActiveMenuElemToScrollUp(scrollOffset);
       }
-
-      setActiveMenuElemToScrollUp(scrollOffset);
     }
 
     $(document).on('scroll', function () {
-      var curScrollOffset = $(this).scrollTop();
+      
+        //zrx
+        var curScrollOffset = $(this).scrollTop();
 
-      if (curScrollOffset > scrollPrevOffset) {
-        //scroll down
-        scrollDown(curScrollOffset);
-      } else {
-        //scroll up
-        scrollUp(curScrollOffset);
-      }
+        if (curScrollOffset > scrollPrevOffset) {
+          //scroll down
+          scrollDown(curScrollOffset);
+        } else {
+          //scroll up
+          scrollUp(curScrollOffset);
+        }
 
-      scrollPrevOffset = curScrollOffset;
+        scrollPrevOffset = curScrollOffset;
+      
     });
 
     $(window).on('resize', function () {

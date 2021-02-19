@@ -1150,7 +1150,7 @@ header.fixed {
   line-height: 1.08;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 1);
 
   &:after {
     @media (max-width: $breakpoint-medium) {
@@ -1165,7 +1165,8 @@ header.fixed {
     }
 
     .siteMap__menuItem.active &,
-    .siteMap__cellCatalog .menu__item.active & {
+    .siteMap__cell .menu__item.active &,
+    .siteMap__cell.active & {
       @media (max-width: $breakpoint-medium) {
         transform: rotate(180deg);
       }
@@ -1306,8 +1307,23 @@ header.fixed {
 }
 .siteMap__pin {
   position: relative;
+
+  @media (max-width: $breakpoint-medium) {
+    opacity: 0.5;
+    margin-left: 30px;
+    text-decoration: underline 1px dotted;
+    text-underline-offset: 3px;
+  }
   span {
-    &:before {
+    @media (max-width: $breakpoint-medium) {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: -30px;
+    }
+    &:before,
+    &:after {
       display: block;
       position: absolute;
       content: '';
@@ -1323,26 +1339,25 @@ header.fixed {
       -webkit-transition: opacity 0.5s;
       -o-transition: opacity 0.5s;
       transition: opacity 0.5s;
+
+      @media (max-width: $breakpoint-medium) {
+        left: 0;
+      }
+    }
+    &:before {
+      background-image: url('images/form/pin.svg');
     }
     &:after {
-      display: block;
-      position: absolute;
-      content: '';
-      width: 25px;
-      height: 25px;
-      left: -30px;
-      top: 50%;
-      margin-top: -12px;
       opacity: 0;
       background-image: url('images/form/pin__hover.svg');
-      background-size: 100% auto;
-      background-position: 50% 50%;
-      background-repeat: no-repeat;
-      -webkit-transition: opacity 0.5s;
-      -o-transition: opacity 0.5s;
-      transition: opacity 0.5s;
     }
   }
+  &:after {
+    @media (max-width: $breakpoint-medium) {
+      display: none;
+    }
+  }
+
   &:hover {
     span {
       &:after {
