@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 53 (72520) - https://sketchapp.com -->
+    <title>49900A78-C391-4975-89B5-30DF0BC025AF</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons/ui/pin">
+            <rect fill="#15171F" x="0" y="0" width="25" height="25"></rect>
+            <path d="M12.5,23.9964526 C18.1666667,18.1284311 21,13.6296136 21,10.5 C21,5.80557963 17.1944204,2 12.5,2 C7.80557963,2 4,5.80557963 4,10.5 C4,13.6296136 6.83333333,18.1284311 12.5,23.9964526 Z" id="Oval" stroke="#db2a1b" stroke-linecap="square"></path>
+            <circle id="Oval" stroke="#db2a1b" stroke-linecap="square" cx="12.5" cy="9.5" r="3.5"></circle>
+        </g>
+    </g>
+</svg>

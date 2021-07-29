@@ -6,6 +6,16 @@
     no-repeat;
   z-index: 2;
 
+  @media (max-width: $breakpoint-medium) {
+    background-size: contain;
+    background-position: left 20%;
+  }
+
+  @media (max-width: $breakpoint-small) {
+    background-size: 175%;
+    background-position: left 30%;
+  }
+
   .title__text,
   .title__accentText {
     -webkit-transition: opacity 0.8s,
@@ -45,11 +55,38 @@
   box-sizing: border-box;
   padding-top: 150px;
   padding-left: 557px;
+
+  @media (max-width: 1679px) {
+    width: 1180px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 70px 0 80px 440px;
+    margin: 80px auto 0;
+  }
+  @media (max-width: $breakpoint-small) {
+    padding-top: 0;
+  }
 }
 
 .screen2__title {
   width: 750px;
   margin-bottom: 20px;
+
+  @media (max-width: 1679px) {
+    width: 550px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: $breakpoint-large) {
+    width: 100%;
+  }
+  @media (max-width: $breakpoint-medium) {
+    width: auto;
+    margin-left: 35%;
+  }
+  @media (max-width: $breakpoint-small) {
+    margin-left: 0;
+  }
 }
 
 .screen2__description {
@@ -62,6 +99,22 @@
   transition: transform cubic-bezier(0, 0.2, 0, 1) 0.8s, opacity 0.8s;
   transition: transform cubic-bezier(0, 0.2, 0, 1) 0.8s, opacity 0.8s,
     -webkit-transform cubic-bezier(0, 0.2, 0, 1) 0.8s;
+
+  @media (max-width: 1679px) {
+    width: 600px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: $breakpoint-large) {
+    width: 100%;
+  }
+  @media (max-width: $breakpoint-medium) {
+    width: auto;
+    margin-left: 35%;
+  }
+  @media (max-width: $breakpoint-small) {
+    margin-left: 0;
+  }
 }
 
 .screen2__features {
@@ -96,7 +149,7 @@
   }
 
   @media (max-width: $breakpoint-medium) {
-    flex: 1 1 auto;
+    flex: 1 1 30%;
   }
 
   @media (max-width: $breakpoint-small) {
@@ -125,15 +178,7 @@
     height: 40px;
   }
 
-  @media (max-width: $breakpoint-medium) {
-    height: 55px;
-  }
-
-  @media (max-width: $breakpoint-small) {
-    height: 55px;
-    margin: 0 auto;
-    display: block;
-  }
+  @include button-sm();
 }
 
 .screen2_animation {
@@ -152,26 +197,6 @@
   }
 }
 
-@media (max-width: 1679px) {
-  .screen2__content {
-    width: 1180px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 70px 0 80px 440px;
-    margin: 80px auto 0;
-  }
-
-  .screen2__title {
-    width: 550px;
-    margin-bottom: 20px;
-  }
-
-  .screen2__description {
-    width: 600px;
-    margin-bottom: 30px;
-  }
-}
-
 .screen3 {
   width: 100%;
   position: relative;
@@ -181,6 +206,14 @@
     no-repeat;
   background-position: center right;
   background-size: contain;
+
+  @media (max-width: $breakpoint-medium) {
+    background-position: top right;
+  }
+  @media (max-width: $breakpoint-small) {
+    background-position: 80% 10%;
+    background-size: 197%;
+  }
 }
 
 .screen3_wrapper {
@@ -208,6 +241,24 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 170px 0;
+
+  @media (max-width: 1679px) {
+    padding: 100px 50px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 1180px;
+  }
+  @media (max-width: $breakpoint-large) {
+    padding: 100px var(--container-padding);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 100%;
+  }
+  @media (max-width: $breakpoint-medium) {
+    padding-top: 0;
+  }
 }
 
 .screen3__title {
@@ -333,14 +384,6 @@
 }
 
 @media (max-width: 1679px) {
-  .screen3__content {
-    padding: 100px 50px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    margin: 0 auto;
-    width: 1180px;
-  }
-
   .screen3__card {
     width: 170px;
   }
@@ -396,6 +439,21 @@
   padding: 0 0 40px;
   width: 1500px;
   margin: 0 auto;
+
+  @media (max-width: 1679px) {
+    padding: 0 50px 40px;
+    width: 1180px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: $breakpoint-large) {
+    padding: 100px var(--container-padding) 40px;
+    width: 100%;
+  }
+
+  @media (max-width: $breakpoint-medium) {
+    padding-top: 0;
+  }
 }
 
 .screen4__ship {
@@ -443,11 +501,11 @@
     top: 389px;
   }
   @media (max-width: $breakpoint-medium) {
-    top: 304px;
+    top: 204px;
     background-size: 550px 10px;
   }
   @media (max-width: $breakpoint-small) {
-    top: 309px;
+    top: 209px;
     background-size: 550px 10px;
   }
 }
@@ -477,6 +535,9 @@
     width: 385px;
     font-size: 45px;
     margin-right: 82px;
+  }
+  @media (max-width: $breakpoint-medium) {
+    margin-bottom: 30px;
   }
   @media (max-width: $breakpoint-small) {
     width: 100%;
@@ -572,12 +633,6 @@
 }
 
 @media (max-width: 1679px) {
-  .screen4__wrapper {
-    padding: 0 50px 40px;
-    width: 1180px;
-    margin: 0 auto;
-  }
-
   .screen4__description {
     font-size: 14px;
   }
@@ -589,7 +644,7 @@
   z-index: 1;
 
   @media (max-width: $breakpoint-medium) {
-    margin-bottom: 100px;
+    margin-bottom: 180px;
   }
   @media (max-width: $breakpoint-small) {
     margin-bottom: 0;
@@ -625,6 +680,9 @@
   @media (max-width: $breakpoint-large) {
     margin-bottom: 140px;
   }
+  @media (max-width: $breakpoint-medium) {
+    margin-bottom: 0;
+  }
 }
 
 .screen5__wrapper {
@@ -656,9 +714,11 @@
     z-index: -1;
     width: 100%;
     height: 100%;
+    margin-top: 140px;
   }
   @media (max-width: $breakpoint-small) {
     height: 0;
+    margin-top: 0;
   }
 }
 
@@ -746,7 +806,7 @@
     height: 502px;
     width: 534px;
     right: 95%;
-    bottom: auto;
+    bottom: 0;
   }
   @media (max-width: $breakpoint-small) {
     height: 207px;
@@ -969,7 +1029,7 @@
   height: 100%;
 
   @media (max-width: $breakpoint-medium) {
-    top: 50px;
+    top: 130px;
     left: auto;
   }
   @media (max-width: $breakpoint-small) {
@@ -1210,7 +1270,7 @@
   }
 
   @media (max-width: $breakpoint-small) {
-    padding-bottom: 440px;
+    padding-bottom: 340px;
   }
 }
 
@@ -1220,12 +1280,16 @@
   @media (max-width: 1679px) {
     width: 640px;
   }
-
+  @media (max-width: $breakpoint-large) {
+    width: 100%;
+  }
   @media (max-width: $breakpoint-medium) {
-    margin-left: 30%;
+    margin-left: 35%;
+    width: 65%;
   }
   @media (max-width: $breakpoint-small) {
     margin-left: 0;
+    width: 100%;
   }
 
   .title__text,
@@ -1255,9 +1319,9 @@
   }
 
   @media (max-width: $breakpoint-medium) {
-    margin-left: 30%;
+    margin-left: 35%;
     margin-bottom: 30px;
-    width: 70%;
+    width: 65%;
   }
   @media (max-width: $breakpoint-small) {
     margin-left: 0;

@@ -227,12 +227,14 @@ $(document).ready(function () {
       relX = event.pageX - parentOffset.left,
       relY = event.pageY - parentOffset.top;
 
-    elem.find('div:first-child').css({
-      top: relY,
-      left: relX,
-      width: elem.outerWidth() * 2 + 'px',
-      height: elem.outerWidth() * 2 + 'px',
-    });
+    elem
+      .find('div:first-child')
+      .css({
+        top: relY,
+        left: relX,
+        width: elem.outerWidth() * 2 + 'px',
+        height: elem.outerWidth() * 2 + 'px',
+      });
   }
   function btnLeaveHover(elem, event) {
     var parentOffset = elem.offset(),
@@ -1448,13 +1450,10 @@ $(document).ready(function () {
 $(window).on('load', function () {
   if ($('.pageNavigation').length) {
     function setActiveToPageNavigationLink(elem) {
-      if (window.innerWidth > 960) {
-        //zrx
-        if ($('.jQ__pageNavigateActive').length) {
-          $('.jQ__pageNavigateActive').removeClass('jQ__pageNavigateActive');
-        }
-        elem.addClass('jQ__pageNavigateActive');
+      if ($('.jQ__pageNavigateActive').length) {
+        $('.jQ__pageNavigateActive').removeClass('jQ__pageNavigateActive');
       }
+      elem.addClass('jQ__pageNavigateActive');
     }
 
     function prescrollToAnchor(elem) {
@@ -1558,54 +1557,49 @@ $(window).on('load', function () {
     var correctionOffset = 76;
 
     function scrollDown(scrollOffset) {
-      if (window.innerWidth > 960) {
-        var totalOffset = scrollOffset + headerHeight + correctionOffset;
+      var totalOffset = scrollOffset + headerHeight + correctionOffset;
 
-        if (totalOffset > blockOffsetTop) {
-          blockToScroll.css({
-            position: 'fixed',
-            top: headerHeight + correctionOffset + 'px',
-          });
-        }
-        if (
-          blockToScroll.offset().top + blockToScrollHeight >
-          catalogMainOffsetTop + catalogMainHeight
-        ) {
-          blockToScroll.css({
-            position: 'absolute',
-            top:
-              $('.catalog__sidebar').outerHeight() -
-              blockToScrollHeight -
-              parseInt($('.catalog__content').css('padding-bottom')) +
-              'px',
-          });
-        }
-
-        setActiveMenuElemToScrollDown(scrollOffset);
+      if (totalOffset > blockOffsetTop) {
+        blockToScroll.css({
+          position: 'fixed',
+          top: headerHeight + correctionOffset + 'px',
+        });
       }
+      if (
+        blockToScroll.offset().top + blockToScrollHeight >
+        catalogMainOffsetTop + catalogMainHeight
+      ) {
+        blockToScroll.css({
+          position: 'absolute',
+          top:
+            $('.catalog__sidebar').outerHeight() -
+            blockToScrollHeight -
+            parseInt($('.catalog__content').css('padding-bottom')) +
+            'px',
+        });
+      }
+
+      setActiveMenuElemToScrollDown(scrollOffset);
     }
 
     scrollDown($(window).scrollTop());
 
     function scrollUp(scrollOffset) {
-      if (window.innerWidth > 960) {
-        var totalOffset = scrollOffset + headerHeight + correctionOffset;
+      var totalOffset = scrollOffset + headerHeight + correctionOffset;
 
-        blockToScroll.css({
-          position: 'fixed',
-          top: headerHeight + correctionOffset + 'px',
-        });
+      blockToScroll.css({
+        position: 'fixed',
+        top: headerHeight + correctionOffset + 'px',
+      });
 
-        if (totalOffset <= blockOffsetTop) {
-          blockToScroll.removeAttr('style');
-        }
-
-        setActiveMenuElemToScrollUp(scrollOffset);
+      if (totalOffset <= blockOffsetTop) {
+        blockToScroll.removeAttr('style');
       }
+
+      setActiveMenuElemToScrollUp(scrollOffset);
     }
 
     $(document).on('scroll', function () {
-      //zrx
       var curScrollOffset = $(this).scrollTop();
 
       if (curScrollOffset > scrollPrevOffset) {
@@ -2656,11 +2650,13 @@ $(window).on('load', function () {
   }
 
   $(document).on('click', 'a[href]', function (e) {
+    e.preventDefault();
+
     var url = $(this).attr('href');
 
-    if (!/#/.test(url) && !/tel:/.test(url) && !/mailto:/.test(url)) {
-      e.preventDefault();
-
+    if (/#/.test(url)) {
+      return true;
+    } else {
       $('.preloader').fadeIn(700, function () {
         window.location.href = url;
       });
@@ -2699,90 +2695,5 @@ $(document).ready(function () {
           }
         }
       });
-  }
-});
-
-$(document).ready(function () {
-  // const menuItem = document.querySelectorAll('.siteMap__menuItem');
-  // // each menuItem is collapsed by default
-  // menuItem.forEach(function (item) {
-  //   if (item.querySelector('.siteMap__menuItemTitle')) {
-  //     const itemTitle = item.querySelector('.siteMap__menuItemTitle');
-
-  //     itemTitle.addEventListener('click', function (e) {
-  //       item.classList.toggle('active');
-  //     });
-  //   }
-  // });
-
-  // const catalogItemBlock = document.querySelector(
-  //   '.siteMap__cellCatalog .menu__item'
-  // );
-  // const catalogItem = document.querySelector(
-  //   '.siteMap__cellCatalog .menu__item > div'
-  // );
-  // const catalogItemTitle = document.querySelector(
-  //   '.siteMap__cellCatalog .siteMap__menuItemTitle'
-  // );
-
-  // if (catalogItemBlock && catalogItem && catalogItemTitle) {
-  //   catalogItemTitle.addEventListener('click', function (e) {
-  //     catalogItemBlock.classList.toggle('active');
-  //   });
-  // }
-
-  // make burger menu items collapse on click
-  const menuItemTitles = document.querySelectorAll('.siteMap__menuItemTitle');
-  menuItemTitles.forEach(function (itemTitle) {
-    itemTitle.addEventListener('click', function (e) {
-      itemTitle.parentElement.classList.toggle('active');
-    });
-  });
-
-  if (window.innerWidth < 960) {
-    const detailContent = document.querySelector('.detail__content');
-    const detailSelection = document.querySelector('.detail__selection');
-
-    if (detailContent && detailSelection) {
-      detailContent.appendChild(detailSelection);
-    }
-  }
-
-  if (window.innerWidth < 960) {
-    const catalogFilterTitle = document.querySelector('.catalogFilter__title');
-    const catalogFilter = document.querySelector('.catalogFilter');
-    if (catalogFilterTitle && catalogFilter) {
-      catalogFilterTitle.addEventListener('click', function () {
-        catalogFilter.classList.toggle('active');
-      });
-    }
-  }
-
-  // expertise properties tabs titles move
-  if (window.innerWidth < 960) {
-    const experSchItem = document.querySelectorAll('.scheme__item');
-    const experSchTab = document.querySelectorAll('.scheme__tab');
-    if (experSchItem && experSchTab) {
-      experSchItem.forEach(function (el, i) {
-        el.prepend(experSchTab[i]);
-      });
-    }
-  }
-
-  // expertise pagination copy
-  if (window.innerWidth < 960) {
-    const experPagination = document.querySelector('.articles__right');
-    const experArticles = document.querySelector('.articles__middle');
-
-    if (experPagination && experArticles) {
-      experArticles.prepend(experPagination.cloneNode(true));
-    }
-  }
-
-  if (window.innerWidth < 960) {
-    Array.prototype.forEach.call(
-      document.querySelectorAll('.listDetail'),
-      (el) => new SimpleBar()
-    );
   }
 });
